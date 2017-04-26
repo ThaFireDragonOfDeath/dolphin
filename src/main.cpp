@@ -45,8 +45,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
 #ifndef Q_OS_WIN
     // Check whether we are running as root
     if (getuid() == 0) {
-        std::cout << "Executing Dolphin as root is not possible." << std::endl;
-        return EXIT_FAILURE;
+        std::cout << "Executing Dolphin as root is not recommended!" << std::endl;
     }
 #endif
 
