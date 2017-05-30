@@ -124,6 +124,7 @@ DolphinMainWindow::DolphinMainWindow() :
     setAcceptDrops(true);
 
     m_tabWidget = new DolphinTabWidget(this);
+    m_tabWidget->setObjectName("tabWidget");
     connect(m_tabWidget, &DolphinTabWidget::activeViewChanged,
             this, &DolphinMainWindow::activeViewChanged);
     connect(m_tabWidget, &DolphinTabWidget::tabCountChanged,
@@ -1453,6 +1454,8 @@ void DolphinMainWindow::connectViewSignals(DolphinViewContainer* container)
             this, static_cast<void(DolphinMainWindow::*)()>(&DolphinMainWindow::goBack));
     connect(view, &DolphinView::goForwardRequested,
             this, static_cast<void(DolphinMainWindow::*)()>(&DolphinMainWindow::goForward));
+    connect(view, &DolphinView::urlActivated,
+            this, &DolphinMainWindow::handleUrl);
 
     const KUrlNavigator* navigator = container->urlNavigator();
     connect(navigator, &KUrlNavigator::urlChanged,
